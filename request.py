@@ -2,7 +2,11 @@ import requests
 import xml.etree.ElementTree as et
 
 # Getting the URL
-xmlurl = requests.get("https://www.hindustantimes.com/rss/topnews/rssfeed.xml")
+try:
+    xmlurl = requests.get("https://www.hindustantimes.com/rss/topnews/rssfeed.xml")
+except (ConnectionError,ConnectionAbortedError) as err:
+    print(f"Requires Internet Connection: {err}")
+
 # specifying the document type
 print(xmlurl.headers['content-type'])
 
